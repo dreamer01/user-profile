@@ -40,13 +40,10 @@ const styles = StyleSheet.create({
 		color: Colors.text
 	},
 	btnContainer:{
-		flexDirection: "row",
 		width: width * 0.8,
-		justifyContent: "space-between",
 		marginTop: 20
 	},
 	button:{
-		width: width * 0.35,
 		padding: 10,
 		borderRadius: 10,
 		backgroundColor: Colors.bgButton

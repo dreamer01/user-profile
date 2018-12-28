@@ -1,32 +1,48 @@
-import React, { Component } from 'react'
-import {
-	ActivityIndicator,
-  AsyncStorage,
-	StatusBar,
-	View
-} from 'react-native'
+import React, { Component } from "react";
+import { ActivityIndicator, AsyncStorage, View } from "react-native";
+import { connect } from "react-redux";
 
-import Routes from "../../navigation/routes"
-import styles from "./styles"
+import { signInUser } from "../../store/actions/index";
+import Routes from "../../navigation/routes";
+import styles from "./styles";
 
 class AuthLoadingScreen extends Component {
 	constructor() {
-    super();
-    this._bootstrapAsync();
-  }
+		super();
+		this._bootstrapAsync();
+	}
 
-  async _bootstrapAsync() {
-    const userData = await AsyncStorage.getItem('userData');
-    this.props.navigation.navigate(userData ? Routes.APP_NAVIGATOR : Routes.AUTH_NAVIGATOR);
-  };
+	async _bootstrapAsync() {
+		let userData = await AsyncStorage.getItem("userData");
+		userData = JSON.parse(userData);
+		if (userData) {
+			this.props
+				.signInUser({
+					email: userData.email,
+					password: userData.password
+				})
+				.then(() => this.props.navigation.navigate(Routes.APP_NAVIGATOR))
+				.catch(error => console.log(error));
+		} else this.props.navigation.navigate(Routes.AUTH_NAVIGATOR);
+	}
 
-  render() {
-    return (
-      <View style={styles.container}>
+	render() {
+		return (
+			<View style={styles.container}>
 				<ActivityIndicator />
-      </View>
-    );
+			</View>
+		);
 	}
 }
 
-export default AuthLoadingScreen;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+	signInUser: ({ email, password }) =>
+		dispatch(signInUser({ email, password, noPersistance: true }))
+});
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(AuthLoadingScreen);

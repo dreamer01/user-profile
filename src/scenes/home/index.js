@@ -1,25 +1,35 @@
-import React, { Component } from 'react'
-import { Text, View , Button , AsyncStorage} from 'react-native'
+import React, { Component } from "react";
+import { Text, View } from "react-native";
+import { connect } from "react-redux";
 
-import Routes from "../../navigation/routes"
-import styles from "./styles"
+import Routes from "../../navigation/routes";
+import styles from "./styles";
 
 class HomeScreen extends Component {
-
-	signOutAsync=this.signOutAsync.bind(this);
-
-	async signOutAsync(){
-    await AsyncStorage.clear();
-    this.props.navigation.navigate(Routes.AUTH_LOADING);
-  };
+	componentDidMount() {
+		!this.props.userProfile.isProfile &&
+			this.props.navigation.navigate(Routes.CREATE_PROFILE);
+	}
 
 	render() {
 		return (
 			<View style={styles.container}>
-				<Button onPress={this.signOutAsync} title="Sign Out" />
+				<Text>Home</Text>
 			</View>
-		)
+		);
 	}
 }
 
-export default HomeScreen;
+const mapStateToProps = state => ({
+	userProfile: state.users.userProfile
+});
+
+const mapDispatchToProps = dispatch => ({
+	signInUser: ({ email, password }) =>
+		dispatch(signInUser({ email, password, noPersistance: true }))
+});
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(HomeScreen);

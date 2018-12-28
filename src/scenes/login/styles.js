@@ -19,13 +19,14 @@ const styles = StyleSheet.create({
 	},
 	illustration:{
 		width: width * 0.6,
-		height: width * 0.6,
+		height: width * 0.5,
 		backgroundColor: Colors.bgLight,
 		borderRadius: 20,
 		marginVertical: 40
 	},
 	inputContainer:{
-		marginTop: 30
+		marginTop: 20,
+		marginBottom: 20
 	},
 	input:{
 		fontFamily: Fonts.Quicksand,
@@ -40,22 +41,32 @@ const styles = StyleSheet.create({
 		color: Colors.text
 	},
 	btnContainer:{
-		flexDirection: "row",
 		width: width * 0.8,
-		justifyContent: "space-between",
-		marginTop: 20
 	},
-	button:{
-		width: width * 0.35,
+	buttonLogin:{
 		padding: 10,
 		borderRadius: 5,
+		marginVertical: 5,
 		backgroundColor: Colors.bgButton
 	},
-	btnTitle:{
+	buttonSignup:{
+		padding: 10,
+		borderRadius: 5,
+		marginVertical: 5,
+		borderColor: Colors.bgButton,
+		borderWidth: 1.5,
+	},
+	loginTitle:{
 		fontFamily: Fonts.Quicksand,
 		textAlign: "center",
 		fontWeight: "bold",
 		color: Colors.bgMedium
+	},
+	signupTitle:{
+		fontFamily: Fonts.Quicksand,
+		textAlign: "center",
+		fontWeight: "bold",
+		color: Colors.bgButton
 	}
 })
 

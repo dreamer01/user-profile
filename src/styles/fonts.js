@@ -1,4 +1,6 @@
-export default Fonts = {
-	Raleway : "Raleway-Regular",
+const Fonts = {
+	Raleway: "Raleway-Regular",
 	Quicksand: "Quicksand-Regular"
-}
+};
+
+export default Fonts;

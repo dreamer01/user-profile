@@ -81,11 +81,11 @@ class SignupScreen extends Component {
 							<Text style={styles.btnTitle} >Sign Up</Text>
 						</View>
 					</Touchable >
-					<Touchable onPress={this.loginAction}>
+					{/*<Touchable onPress={this.loginAction}>
 						<View style={styles.button}>
 							<Text style={styles.btnTitle} >Login</Text>
 						</View>
-					</Touchable>
+					</Touchable>*/}
 				</View>
 			</View>
     )
